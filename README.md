@@ -1,4 +1,4 @@
-# 🕸️ LangGraph — Basics & Core Concepts
+# 🕸️ LangGraph Basics & Core Concepts
 
 Was the first time my friend introduced langgraph to me soo got curios, and curiosity led me here
 A quick-reference README for understanding how LangGraph works under the hood.
@@ -7,10 +7,10 @@ A quick-reference README for understanding how LangGraph works under the hood.
 
 ## What is LangGraph?
 
-**LangGraph** is a library (built by the LangChain team) for building **stateful, multi-step AI applications** — especially agents — by modeling them as a **graph** instead of a straight-line chain.
+**LangGraph** is a library (built by the LangChain team) for building **stateful, multi-step AI applications** especially agents by modeling them as a **graph** instead of a straight line chain.
 
 Normal LangChain chains run **linearly**: step 1 → step 2 → step 3.
-Real agents don't work like that — they need to **loop, branch, retry, and call tools conditionally**. LangGraph gives you that control by letting you define:
+Real agents don't work like that they need to **loop, branch, retry, and call tools conditionally**. LangGraph gives you that control by letting you define:
 
 - **Nodes** → units of work (functions)
 - **Edges** → how control flows between nodes
@@ -38,7 +38,7 @@ Every node receives the current state and returns updates to merge into it.
 ---
 
 ### 2. Nodes
-A **Node** is just a Python function that does one job — call an LLM, run a tool, transform data, etc. It takes the state in and returns a (partial) state update.
+A **Node** is just a Python function that does one job call an LLM, run a tool, transform data, etc. It takes the state in and returns a (partial) state update.
 
 ```python
 def call_model(state: AgentState):
@@ -69,7 +69,7 @@ graph.add_conditional_edges(
 ---
 
 ### 4. Tools
-**Tools** are functions the LLM can decide to call — search the web, query a database, do a calculation, etc. In LangGraph, tools are usually wrapped and attached to a special **ToolNode**, which:
+**Tools** are functions the LLM can decide to call search the web, query a database, do a calculation, etc. In LangGraph, tools are usually wrapped and attached to a special **ToolNode**, which:
 
 1. Looks at the LLM's output for a tool call request
 2. Executes the actual Python function
@@ -82,7 +82,7 @@ tools = [search_tool, calculator_tool]
 tool_node = ToolNode(tools)
 ```
 
-The LLM doesn't "run" the tool itself — it just *requests* one, and the graph executes it.
+The LLM doesn't "run" the tool itself it just *requests* one, and the graph executes it.
 
 ---
 
@@ -114,7 +114,7 @@ app = graph.compile()
 ---
 
 ### 6. Checkpointer (Memory)
-A **Checkpointer** lets the graph **save and resume state** — useful for multi-turn conversations, human-in-the-loop pauses, or crash recovery.
+A **Checkpointer** lets the graph **save and resume state** useful for multi-turn conversations, human-in-the-loop pauses, or crash recovery.
 
 ```python
 from langgraph.checkpoint.memory import MemorySaver
@@ -164,7 +164,7 @@ This loop is what lets an agent **think → act → observe → think again** un
 - Supports **loops** (agents retrying or re-planning)
 - Supports **branching** (different paths based on conditions)
 - Explicit, inspectable **state** at every step
-- Easier to debug — you can visualize the graph itself
+- Easier to debug you can visualize the graph itself
 - Built-in support for **human-in-the-loop** and **persistence**
 
 ---
